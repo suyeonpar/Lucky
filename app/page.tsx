@@ -9,9 +9,20 @@ export default function Home() {
   const [month, setMonth] = useState<string>("1");
   const [time, setTime] = useState<string>("");
 
-  const [resultData, setResultData] = useState(null);
+  const [resultToday, setResultToday] = useState(null);
+  const [resultTom, setResultTom] = useState(null);
+  const [resultMonth, setResultMonth] = useState(null);
+
   const fetchData = async () =>{
     const res = await fetch(`/api?gender=${gender}&birthdate=${birthDate}&month=${month}&time=${time}`)
+    const data = await res.json();
+    setResultToday(data.result.day);
+    setResultTom(data.result.tomorrow);
+    setResultMonth(data.result.month);
+    console.log(data.result.day);
+    console.log(data.result.tomorrow);
+    console.log(data.result.month);
+     //console.log(data)
   }
 
   const birthChange =((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,7 +82,7 @@ export default function Home() {
         <p>달 : {month}</p>
         <p>시간 : {time}</p>
       </div>
-
+      {/* {resultData && resultData.day.title} */}
     </>
   )
 }
