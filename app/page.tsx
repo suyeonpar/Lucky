@@ -82,7 +82,8 @@ export default function Home() {
         <p>달 : {month}</p>
         <p>시간 : {time}</p>
       </div>
-      {/* {resultData && resultData.day.title} */}
+      
+
     </>
   )
 }
