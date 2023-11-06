@@ -6,6 +6,7 @@ interface Content  {
     desc: string;
     index: string;
   };
+
   
   interface DateDetail  {
     title: string;
