@@ -61,8 +61,8 @@ export default function Home() {
       <div className="max-w-7xl flex flex-wrap justify-between mt-10 mx-auto">
         <div className="basis-full text-center mb-20 md:basis-[25%]">
           <p className='text-xl font-bold mb-2'>성별</p>
-          <button onClick={()=>{setGender("m")}} className='border p-1 rounded-md mr-5 hover:bg-blue-400 hover:text-white'>남성</button>
-          <button onClick={()=>{setGender("f")}} className='border p-1 rounded-md hover:bg-pink-300 hover:text-white'>여성</button>
+          <button onClick={()=>{setGender("m")}} className={`border p-1 rounded-md mr-5 hover:bg-blue-400 hover:text-white ${gender === "m" ? "bg-blue-400 text-white" : ""}`}>남성</button>
+          <button onClick={()=>{setGender("f")}} className={`border p-1 rounded-md hover:bg-pink-300 hover:text-white ${gender === "f" ? "bg-pink-300 text-white" : ""}`}>여성</button>
         </div>
 
         <div className='basis-full mb-20 text-center md:basis-[25%]'>
@@ -105,27 +105,31 @@ export default function Home() {
         </div>
 
       </div>
-        <div className="mt-20">
-          <p>성별 : {gender}</p>
-          <p>생년월일 : {birthDate}</p>
-          <p>달 : {month}</p>
-          <p>시간 : {time}</p>
-        </div>
+      <div className="mt-10 max-w-7xl flex justify-around mx-auto mb-10">
+        <p>성별 : {gender}</p>
+        <p>생년월일 : {birthDate}</p>
+        <p>달 : {month}</p>
+        <p>시간 : {time}</p>
+      </div>
     </div>
       
       <div>
         {resultToday && (
           <>
-          <h3>{resultToday.title}</h3>
-          <p>{resultToday.date}</p>
-          {resultToday.content.map((item, idx) => (
-            <div key={idx}>
-              <h3 className='text-bold text-lg'>{item.name}</h3>
-              <p>{item.desc}</p>
+          <div className='max-w-7xl mx-auto'>
+            <div className='mb-5'>
+              <h3 className='text-xl font-bold'>{resultToday.title}</h3>
+              <p className='text-gray-400'>운세 날짜 : {resultToday.date}</p>
             </div>
-          ))}
+            {resultToday.content.map((item, idx) => (
+              <div key={idx} className='border-b mb-2'>
+                <h3 className='text-bold text-lg mb-2 font-semibold'>{item.name}</h3>
+                <p className='mb-3'>{item.desc}</p>
+              </div>
+            ))}
+          </div>
           </>
-      )}
+        )}
       </div>
     </>
   )
